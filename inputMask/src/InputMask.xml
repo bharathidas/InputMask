@@ -4,7 +4,7 @@
         xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Input Mask</name>
-    <description>My widget description</description>
+    <description>Text input that only accepts characters that fit a mask, for example a phone number, date or ID format.</description>
     <icon>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAABp1BMVEUAAABV//9mzP9LtP9Ms/9Jtv9NsvdJsfpLtPpJsfdJsfhJsvhJsvdKsvdJsPhKsPhJsfdJsPhJsfdIsfhJsfdIsPdJsfhJsfhJsPhJsPhIsfhIsPdJsPdKsPdKsfdNsvdOsvdPs/dQs/dRtPdStPdTtPdUtfdWtvdXtvdauPdcuPdeufdeufhguvhiu/hju/hkvPhmvfhnvfhpvvhrv/huwPhvwfhxwfhywvhzwvh4xfl5xfl6xfl8xvl9xvl9x/mByPmCyfmFyvmGyvmJzPmKzPmLzfmNzvqPzvqQz/qT0PqU0PqU0fqX0vqY0vqa0/qe1fqg1vqj1/uk1/un2fup2vut2/uv3Puw3Puw3fuz3vu13/u23/u34Pu44Pu64fu64fy84vy94vy+4/y/4/zD5fzE5fzG5vzH5vzI5/zK6PzL6PzR6/zT7P3U7P3V7f3W7f3Y7v3Z7v3c8P3e8f3f8f3g8f3i8v3l8/3l9P3n9P3r9v7t9/7u9/7v+P7w+P7x+f7y+f70+v71+v74/P75/P76/f77/f78/f78/v79/v7+/v7////6dMsRAAAAG3RSTlMAAwURGxwhMTNic3SEh4iVp7XBzejt7vH5/f6PsMNWAAABsklEQVR4AWIYfGAUjIJRMAqYuYREJKWJAqLCPGwY+jnFpEkBEryMqPr5pEkFgkwo9kuTDviR/S9GhgFSHAgDuKXJAQIIA4TIMkAcEY4i0mQBVrgBkuQZwA43QJo8wIFhQEhEOIBQOutHJozDOP5Crp4e1RhkJ0tKGJFd6oNEdtmJyEIzpaZl5nrRZgaHM/2Pf5/vwXXfyagXgG93bwSAlEolowLMm9w83gibhXH2gKKVdD67gTnWjwCk+VVjMQS4suSnnjMLRVFc9sAHvAX2A9fySaXNBMbEZVUWscaHIMRuqwBgD8hDEbnsRmfjUKJkAQZGCTlO/xWBwIADQLIZBlY441MvfoF1xlFS/4fy+bzXKh4dgNJE7L3eh3tmtuWa+AMcMIY3dgUvZQpGEYmMw2kD7HC+R29UqyoXLaBd0QZxzgXgikLLDSqJTKU5HOcS0MsbA9jPqtwCRvXm2eorBbNIJBw3KJ9O4Yl+AAXdnyaLt7PWN3jRWLvzmAVp94zO5+n41/onfo/UpExxZqI0O7NQr0DhIq9Io7hQpbRYp7hiobRqo6ByFcNWuY6CUTAKRgEAo8X0lBD3V30AAAAASUVORK5CYII=
     </icon>
@@ -13,42 +13,42 @@
            <propertyGroup caption="Configuration">
            <property key="valueKey" type="attribute" required="true">
                 <caption>Value</caption>
-                <description>Input Value</description>
+                <description>String attribute that stores the text exactly as it is shown in the input, including the fixed mask characters.</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
             <property key="maskKey" type="attribute" required="true">
                 <caption>Mask</caption>
-                <description>Input Mask</description>
+                <description>String attribute with the mask, for example +91 _____ _____ . The characters named in Replacement are the places where the user can type.</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
             <property key="replacementKey" type="attribute" required="true">
                 <caption>Replacement</caption>
-                <description>Input Mask Replacement</description>
+                <description>String attribute with the rules for the mask characters, written as character:/regular expression/ and separated by commas. Example: _:/\d/ or A:/[A-Z]/,9:/\d/</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
             <property key="showMaskKey" type="attribute" required="false">
                 <caption>Show Mask</caption>
-                <description>Whether to show the mask</description>
+                <description>Boolean attribute. When true, the whole mask is shown in the input while the user types. When no attribute is selected, false is used.</description>
                 <attributeTypes>
                     <attributeType name="Boolean"/>
                 </attributeTypes>
             </property>
             <property key="separateKey" type="attribute" required="false">
                 <caption>Separate</caption>
-                <description>Whether to separate the mask</description>
+                <description>Boolean attribute. When true, every typed character keeps its own position, so deleting a character in the middle leaves a gap instead of shifting the rest to the left. When no attribute is selected, false is used.</description>
                 <attributeTypes>
                     <attributeType name="Boolean"/>
                 </attributeTypes>
             </property>
             <property key="placeholderKey" type="attribute" required="false">
                 <caption>Placeholder</caption>
-                <description>Input Placeholder</description>
+                <description>String attribute with the placeholder text shown while the input is empty. When it is empty or not selected, "Enter value" is shown.</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
@@ -68,7 +68,7 @@
         <propertyGroup caption="Events">
             <property key="onClickAction" type="action" required="false">
                 <caption>On click action</caption>
-                <description>Action to trigger when button / label is clicked</description>
+                <description>Action to run when the user clicks the input.</description>
             </property>
         </propertyGroup>
     </properties>

@@ -20,8 +20,7 @@ export interface InputMaskContainerProps {
 
 export interface InputMaskPreviewProps {
     readOnly: boolean;
-    renderMode: "design" | "xray" | "structure";
-    translate: (text: string) => string;
+    renderMode?: "design" | "xray" | "structure";
     valueKey: string;
     maskKey: string;
     replacementKey: string;

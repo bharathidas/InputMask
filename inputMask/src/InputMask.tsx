@@ -5,56 +5,40 @@ import { InputMaskInput } from "./components/InputMaskInput";
 import "./ui/InputMask.css";
 
 export function InputMask(props: InputMaskContainerProps): ReactElement {
-    
-    const {
-        maskKey,
-        replacementKey,
-        showMaskKey,
-        separateKey,
-        valueKey,
-        placeholderKey,
-        onClickAction
-    } = props;
+    const { maskKey, replacementKey, showMaskKey, separateKey, valueKey, placeholderKey, onClickAction } = props;
 
-    // Handle click action
     const onClickHandler = useCallback(() => {
-        if (onClickAction && onClickAction.canExecute) {
+        if (onClickAction?.canExecute && !onClickAction.isExecuting) {
             onClickAction.execute();
         }
     }, [onClickAction]);
 
-    // Handle value change from child
+    // The value attribute cannot be written while it is loading or when it is read-only.
+    const readOnly = valueKey.status !== "available" || valueKey.readOnly;
+
     const handleChange = useCallback(
         (value: string) => {
-            if (valueKey && valueKey.setValue) {
-                
-                valueKey.setValue(value);
+            if (valueKey.status === "available" && !valueKey.readOnly) {
+                valueKey.setValue(value === "" ? undefined : value);
             }
         },
         [valueKey]
     );
 
-    // Optional validator (replacement for componentDidMount)
-    if (valueKey && valueKey.setValidator) {
-        valueKey.setValidator((value?: string) => {
-            if (!value || value.trim() === "") {
-                return "Value is required";
-            }
-            return undefined;
-        });
-    }
-
     return (
         <InputMaskInput
-            value={valueKey.value?.toString() || "" }
-            maskKeyvalue={maskKey.value?.toString() || "" }
-            replacementKeyvalue={ replacementKey.value?.toString() || ""}
-            showMaskKeyvalue={showMaskKey?.value || false}
-            separateKeyvalue={separateKey?.value || false}
+            id={props.id}
+            tabIndex={props.tabIndex}
+            value={valueKey.value ?? ""}
+            maskKeyvalue={maskKey.value ?? ""}
+            replacementKeyvalue={replacementKey.value ?? ""}
+            showMaskKeyvalue={showMaskKey?.value === true}
+            separateKeyvalue={separateKey?.value === true}
             placeholderKeyvalue={placeholderKey?.value || "Enter value"}
-            onClickAction={onClickHandler}
-            onChange={handleChange}   
+            readOnly={readOnly}
+            validation={valueKey.validation}
+            onClickAction={onClickAction ? onClickHandler : undefined}
+            onChange={handleChange}
         />
     );
-
 }

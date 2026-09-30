@@ -1,24 +1,18 @@
-.widget-inputmask-clickable {
+/* The input keeps the browser's own look, as in version 1.0.0. Style it through .widget-inputmask-input. */
+.widget-inputmask-clickable .widget-inputmask-input:not(:disabled) {
     cursor: pointer;
 }
 
-.widget-inputmask {
+/* Box shown in the Studio Pro design mode */
+.widget-inputmask-preview {
     display: inline-block;
-}
-
-.widget-inputmask.badge:empty {
-    display: initial;
-    /* Fix padding to stay round */
-    padding: 3px 10px;
-}
-
-.widget-inputmask.label:empty {
-    display: initial;
-    /* Fix padding to stay square */
-    padding: .2em .8em .3em;
-}
-
-.widget-inputmask.badge {
-    min-width: 18px;
-    min-height: 18px;
+    min-width: 170px;
+    padding: 2px 4px;
+    border: 1px solid #767676;
+    border-radius: 2px;
+    background: #fff;
+    color: #757575;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: nowrap;
 }

@@ -1,29 +1,13 @@
 import { ReactElement, createElement } from "react";
-import { InputMaskInput, InputMaskInputProps } from "./components/InputMaskInput";
+
 import { InputMaskPreviewProps } from "../typings/InputMaskProps";
 
-function parentInline(node?: HTMLElement | null): void {
-    // Temporary fix, the web modeler add a containing div, to render inline we need to change it.
-    if (node && node.parentElement && node.parentElement.parentElement) {
-        node.parentElement.parentElement.style.display = "inline-block";
-    }
-}
-
-function transformProps(props: InputMaskPreviewProps): InputMaskInputProps {
-    return {
-     value: props.valueKey ? props.valueKey : "",
-        maskKeyvalue: props.maskKey ? props.maskKey : "",
-        replacementKeyvalue: props.replacementKey ? props.replacementKey : "",
-        showMaskKeyvalue:  false,
-        separateKeyvalue:  false,
-        placeholderKeyvalue: props.placeholderKey ? props.placeholderKey : ""
-    };
-}
-
+// Design mode only knows the names of the selected attributes, not their values, so the mask cannot be applied here.
+// The preview is a plain input box that shows which attribute stores the value.
 export function preview(props: InputMaskPreviewProps): ReactElement {
     return (
-        <div ref={parentInline}>
-            <InputMaskInput {...transformProps(props)}></InputMaskInput>
+        <div className="widget-inputmask">
+            <div className="widget-inputmask-preview">{props.valueKey ? `[${props.valueKey}]` : "Input Mask"}</div>
         </div>
     );
 }
