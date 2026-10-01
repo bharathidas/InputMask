@@ -57,6 +57,8 @@ The source code is on GitHub: https://github.com/bharathidas/InputMask
 - The value is stored with the fixed mask characters. There is no second value without them.
 - A value that is set outside the widget is shown as it is; it is not reformatted to the mask.
 - The widget does not check that the mask is completely filled.
+- With Show mask true, the stored value contains the mask characters of the places that are not filled. When the user deletes everything, the empty mask (for example `+91 _____ _____`) is stored, not an empty value.
+- With an empty mask or an empty replacement nothing can be typed.
 - The input has the browser's own look, not the Atlas input style. Style it with the CSS class `widget-inputmask-input`.
 
 ## Dependencies
@@ -98,9 +100,9 @@ Placeholder: when the attribute is empty or not selected, the text "Enter value"
 
 ## Known bugs
 
-- With Show mask true, the stored value contains the mask characters of the places that are not filled. When the user deletes everything, the empty mask (for example `+91 _____ _____`) is stored, not an empty value.
-- With an empty mask or an empty replacement nothing can be typed.
-- A value that does not fit the mask (for example set by a microflow) is shown as it is.
+None.
+
+Please report it to https://github.com/bharathidas/InputMask/issues
 
 ## FAQ
 
